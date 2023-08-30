@@ -13,11 +13,11 @@ type Props = {
 	value?: number;
 	handleChange?: (tabConfig: TabConfig, index: number, tabConfigs: TabConfig[]) => void;
 	className?: string;
-	withCardBackground?: boolean;
+	isOutsideCard?: boolean;
 };
 
 export function Tabs(props: Props) {
-	const {tabConfigs, tabContentList, value, handleChange, className, withCardBackground} = props;
+	const {tabConfigs, tabContentList, value, handleChange, className, isOutsideCard} = props;
 
 	const [tabValue, setTabValue] = useState(0);
 
@@ -27,7 +27,7 @@ export function Tabs(props: Props) {
 	}
 
 	return (
-		<div role='tabs-wrapper' className={cn('p-1', className, withCardBackground && 'bg-[#EDEFF2]')}>
+		<div role='tabs-wrapper' className={cn('bg-[#EDEFF2] p-1', className, isOutsideCard && 'bg-transparent')}>
 			<Tab.Group selectedIndex={value || tabValue} onChange={handleChangeClick}>
 				<Tab.List>
 					{tabConfigs.map(({label}, index) => {

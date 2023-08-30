@@ -1,12 +1,29 @@
-//@ts-ignore
-import userLogo from '@shared/assets/user.svg';
 import {ReactElement} from 'react';
 
+import {BriefcaseIcon} from '@heroicons/react/24/outline';
+
+// @ts-ignore
+import userIconPath from '@shared/assets/user.svg';
+// @ts-ignore
+import pyramidIconPath from '@shared/assets/pyramid.svg';
+import {cn} from '@shared/lib/helpers';
+
 export const APP_ICON = {
-	USER: 'user',
-};
+	USER: 'USER',
+	APP_LOGO: 'APP_LOGO',
+	PORTFOLIO: 'PORTFOLIO',
+} as const;
+
 const iconMap = {
-	[APP_ICON.USER]: () => <img src={userLogo} alt='user icon' />,
+	[APP_ICON.USER]: ({className}: {className: string}) => (
+		<img src={userIconPath} alt='user icon' className={cn(className)} />
+	),
+	[APP_ICON.APP_LOGO]: ({className}: {className: string}) => (
+		<img src={pyramidIconPath} alt='pyramid icon' className={cn(className)} />
+	),
+	[APP_ICON.PORTFOLIO]: ({className}: {className: string}) => (
+		<BriefcaseIcon className={cn(className, 'text-primary-grey h-6 w-6')} />
+	),
 } as any;
 
 type IconProps = {
